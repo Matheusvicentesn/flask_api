@@ -5,6 +5,5 @@
 "JWT_SECRET_KEY" : "JWT_SECRET_KEY",
 "PORT" : "5432",
 "HOST" :"localhost",
-"DATABASE_URL": "postgres://svhqpcqjvqkurd:8ab07bda539a0da8403aa8f3355567e85e2a3fc45c81de39fcfef77c0e3d90e5@ec2-44-195-191-252.compute-1.amazonaws.com:5432/d4n1doh5s783d5"
+"DATABASE_URL": "postgresql://svhqpcqjvqkurd:8ab07bda539a0da8403aa8f3355567e85e2a3fc45c81de39fcfef77c0e3d90e5@ec2-44-195-191-252.compute-1.amazonaws.com:5432/d4n1doh5s783d5"
 }
-
