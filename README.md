@@ -1,4 +1,4 @@
 # documentation under construction
 
-**deployed on:** https://github.com/Matheusvicentesn/flask_api
+**deployed on:** https://pyrestapiflaskapp.herokuapp.com
 
