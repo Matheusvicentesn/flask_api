@@ -9,7 +9,7 @@ from sql_alchemy import banco
 from config import *
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}'
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'DontTellAnyone'
 app.config['JWT_BLACKLIST_ENABLED'] = True
@@ -19,7 +19,7 @@ jwt = JWTManager(app)
 
 @app.route('/')
 def index():
-    return '<h1>Bem vindo a API!</h1>'
+    return '<h1>Deploy heroku</h1>'
 
 @app.before_first_request
 def cria_banco():

@@ -18,8 +18,7 @@ path_params.add_argument('offset', type=float)
 
 class Hoteis(Resource):
     def get(self):
-        connection = psycopg2.connect(
-            user=USER, password=PASSWORD, host=HOST, port=PORT, database=DATABASE)
+        connection = psycopg2.connect(DATABASE_URL)
         cursor = connection.cursor()
 
         dados = path_params.parse_args()
