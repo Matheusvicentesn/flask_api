@@ -1,4 +1,5 @@
 # FLASK API
+# still under construction
 
 **deployed on:** https://pyrestapiflaskapp.herokuapp.com
 
@@ -12,7 +13,7 @@ Projeto iniciou-se derivado de um curso onde foi desenvolvido uma Rest API em Fl
 
 # ENDPOINTS
 
- **Endpoints relacionados aos usuários**
+## Endpoints relacionados aos usuários
 
 ## Criação de usuário:
 Method | URL 
@@ -137,4 +138,199 @@ Se dermos um novo GET no /usuario{user_id} podemos ver a informação "ativado" 
   </tr>
 </table>
 
+**Se não encontrar o usuário a resposta é:**
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 404 Not Found </td>
+    <td> {"User id '5' not found."}</td>
+  </tr>
+</table>
+
+## Login dos usuários
+
+Para realizar certas ações na API o usuário precisa estar logado, foi implementado um sistema de token com jwt.
+
+
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> POST </td>
+    <td> /login </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td colspan="2"> Header </td>
+  </tr>
+  <tr>
+    <td> Content-Type  </td>
+    <td> application/json  </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td> Request Body </td>
+  </tr>
+  <tr>
+    <td> {"login": "exemplo","senha": "exemplo"} </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td> {"access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NjY2NTA0MCwianRpIjoiN2IzYmM0OTMtYWIxOS00MmFlLTlkMjctNTUyMjY3YjdmZTY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjQ2NjY1MDQwLCJleHAiOjE2NDY2NjU5NDB9.2yJJBVt9DZRje0wWZXg-SomBDihEVK9Qh7fHUWx-mds"}</b></td>
+  </tr>
+</table>
+
+**Se não encontrar o usuário ou dados estiverem incorretos a resposta é:**
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 404 Not Found </td>
+    <td> {"message": "The username or password is incorrect."}</td>
+  </tr>
+</table>
+
+
+## Logout dos usuários
+
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> POST </td>
+    <td> /logout </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td colspan="2"> Header </td>
+  </tr>
+  <tr>
+    <td> Authorization </td>
+    <td> Bearer {token_de_acesso} </td>   
+  </tr>
+</table>
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td>{"message": "Logged out successfully!"}</td>
+  </tr>
+</table>
+
+ ## Endpoints relacionados aos sites
+ 
+ ## Criando site
+ 
+ <table>
+  <tr>
+    <td> Method </td>
+    <td> URL</td>
+  </tr>
+  <tr>
+    <td> POST </td>
+    <td>/sites{url} <b> exemplo /sites/www.exemplo.com</b></td> 
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td>
+{
+    "site_id": 1,
+    "url": "www.exemplo.com",
+    "hoteis": []
+}
+    </td>
+  </tr>
+</table>
+
+**Se o site já existir:**
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 400 Bad request </td>
+    <td>{"message": "The site already exists."}</td>
+  </tr>
+</table>
+
+## Pesquisando sites
+
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> GET </td>
+    <td> /sites </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td>{"sites": [{"site_id": 1,"url": "www.exemplo.com","hoteis": [ ]}, {"site_id": 2, "url": "www.exemplo2.com","hoteis": [ ]},]</td>
+  </tr>
+</table>
+
+**Também é possível realizar a pesquisa de um site especifico:**
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> GET </td>
+    <td> /site/{url} <b>exemplo /site/www.exemplo.com</b> </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td>{"sites": [{"site_id": 1,"url": "www.exemplo.com","hoteis": [ ]}]</td>
+  </tr>
+</table>
 
