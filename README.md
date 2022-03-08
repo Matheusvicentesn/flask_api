@@ -1,5 +1,3 @@
-# FLASK API
-# still under construction
 
 **deployed on:** https://pyrestapiflaskapp.herokuapp.com
 
@@ -429,6 +427,194 @@ Para realizar certas ações na API o usuário precisa estar logado, foi impleme
   </tr>
 </table>
 
-## Criação de hotéis:
+## Atualizar hotéis:
+
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> PUT </td>
+    <td> /hoteis/{hotel_id}</b> </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td colspan="2"> Header </td>
+  </tr>
+  <tr>
+    <td> Content-Type  </td>
+    <td> application/json  </td>
+  </tr>
+  <tr>
+    <td> Authorization  </td>
+    <td> Bearer {token_de_acesso}  </td>
+  </tr>
+</table>
+
+**Neste exemplo trocamos o nome do hotel de "Exemplo Hotel" para "Exemplo Hotel Alterado"**
+<table>
+  <tr>
+    <td> Request Body </td>
+  </tr>
+  <tr>
+    <td> {"nome": "Exemplo Hotel <b>Alterado</b>","estrelas": 4.0,"diaria": 600.0,"cidade": "Araras","site_id": 2}</td>
+  </tr>
+</table>
+
+**Se o hotel_id existir vamos atualizar os dados**
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td>{"hotel_id": "exemplo","nome": "Exemplo Hotel <b>Alterado</b>","estrelas": 4.0,"diaria": 600.0,"cidade": "Araras","site_id": 2}</td>
+  </tr>
+</table>
+
+**Se o hotel_id não existir é criado um novo hotel**
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 201 Created </td>
+    <td>{"hotel_id": "exemplo5","nome": "Exemplo Hotel <b>Alterado</b>","estrelas": 4.0,"diaria": 600.0,"cidade": "Araras","site_id": 2}</td>
+  </tr>
+</table>
+
+**Sem código de autenticação ou código de autenticação expirado**
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 500 Internal Server Error </td>
+    <td>{"message": "Internal Server Error"}</td>
+  </tr>
+</table>
+
+## Deletar Hotéis:
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> DELETE </td>
+    <td> /hoteis/{hotel_id}  exemplo /hoteis/exemplo</b> </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td colspan="2"> Header </td>
+  </tr>
+  <tr>
+    <td> Authorization  </td>
+    <td> Bearer {token_de_acesso}  </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td>{"message": "Hotel deleted."}</td>
+  </tr>
+</table>
+
+**Se o hotel_id não existir**
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 404 Not Found </td>
+    <td>{"message": "Hotel not found."}</td>
+  </tr>
+</table>
+
+**Sem código de autenticação ou código de autenticação expirado**
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 500 Internal Server Error </td>
+    <td>{"message": "Internal Server Error"}</td>
+  </tr>
+</table>
+
+## Pesquisar Hotéis:
+**Pesquisa geral, retorna todos os hoteis**
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> GET </td>
+    <td> /hoteis</td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 OK </td>
+    <td>{"hoteis": [{"hotel_id": "exemplo","nome": "Exemplo Hotel","estrelas": 4.0,"diaria": 600.0,"cidade": "Araras","site_id": 2},
+        {"hotel_id": "exemplo2","nome": "Exemplo Hotel 2","estrelas": 4.2,"diaria": 467.0,"cidade": "São Paulo","site_id": 2},<br>
+        {"hotel_id": "exemplo3","nome": "Exemplo Hotel 3","estrelas": 4.3,"diaria": 732.0,"cidade": "Rio de Janeiro","site_id": 2}]}</td>
+  </tr>
+</table>
+
+**Pesquisa específica, retorna hotel específico**
+
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> GET </td>
+    <td> /hoteis/{hotel_id} exemplo <b>/hoteis/exemplo</b></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 OK </td>
+    <td>{"hotel_id": "exemplo","nome": "Exemplo Hotel","estrelas": 4.0,"diaria": 600.0,"cidade": "Araras","site_id": 2}</td>
+  </tr>
+</table>
+
+## Pesquisa de Hotéis Avançada:
+
+**Parâmetros para consulta**
+* cidade - Filtrar hotéis pela cidade escolhida. Padrão: Nulo 
+* estrelas_min - Avaliações mínimas de hotéis de 0 a 5. Padrão: 0
+* estrelas_max - Avaliações máximas de hotéis de 0 a 5. Padrão: 5
+* diaria_min - Valor mínimo da diária do hotel de R$ 0 a R$ 10.000,00. Padrão: 0
+* diaria_max - Valor máximo da diária do hotel de R$ 0 a R$ 10.000,00. Padrão: 10000
+* limit - Quantidade máxima de elementos exibidos por página. Padrão: 50
+* offset - Quantidade de elementos pular (geralmente múltiplo de limit). Padrão: 0
+
 
 
