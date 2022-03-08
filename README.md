@@ -2,7 +2,7 @@
 **deployed on:** https://pyrestapiflaskapp.herokuapp.com
 
 
-Sobre a API e projeto
+# Sobre a API e projeto
 
 Projeto iniciou-se derivado de um curso onde foi desenvolvido uma Rest API em Flask, a API foi inspirada em como se comporta o site Trivago, onde o site da Trivago procura hotéis em outros sites e fazem a comparação entre eles. A API conta com a criação de usuários para que possam “cadastrar” sites, hotéis e seus atributos, podendo criar, ler, atualizar, e deletar, fazendo assim um CRUD completo. Além da API no projeto também é mostrado como consumir esses dados e filtrá-los totalmente utilizando o Python. No modelo relacional abaixo podemos ter uma melhor visualização de como se comporta a API, usuários possuem um sistema de login e também de ativação, para a parte de login foi utilizado JWT,já a ativação simula um envio de e-mail para a ativação do usuário para que possam realizar operações de GET,POST,PUT, DELETE  nos sites e hoteis.
 
@@ -616,5 +616,9 @@ Para realizar certas ações na API o usuário precisa estar logado, foi impleme
 * limit - Quantidade máxima de elementos exibidos por página. Padrão: 50
 * offset - Quantidade de elementos pular (geralmente múltiplo de limit). Padrão: 0
 
+[![flask_api](https://yt-embed.herokuapp.com/embed?v=lofoP4OR1vo)](https://www.youtube.com/watch?v=lofoP4OR1vo "flask_api")
 
 
+<hr>
+
+Estou aberto a feedbacks comentários e críticas quaisquer dúvidas entrem em contato comigo <a href="mailto:matheusvicentesj5@hotmail.com">Matheus Vicente</a>
