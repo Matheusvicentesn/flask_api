@@ -268,7 +268,7 @@ Para realizar certas ações na API o usuário precisa estar logado, foi impleme
 {
     "site_id": 1,
     "url": "www.exemplo.com",
-    "hoteis": []
+    "hoteis": [ ]
 }
     </td>
   </tr>
@@ -307,7 +307,7 @@ Para realizar certas ações na API o usuário precisa estar logado, foi impleme
   </tr>
   <tr>
     <td> 200 Ok </td>
-    <td>{"sites": [{"site_id": 1,"url": "www.exemplo.com","hoteis": [ ]}, {"site_id": 2, "url": "www.exemplo2.com","hoteis": [ ]},]</td>
+    <td>{"sites": [{"site_id": 1,"url": "www.exemplo.com","hoteis": [ ]}, {"site_id": 2, "url": "www.exemplo2.com","hoteis": [ ]},]}</td>
   </tr>
 </table>
 
@@ -330,7 +330,105 @@ Para realizar certas ações na API o usuário precisa estar logado, foi impleme
   </tr>
   <tr>
     <td> 200 Ok </td>
-    <td>{"sites": [{"site_id": 1,"url": "www.exemplo.com","hoteis": [ ]}]</td>
+    <td>{"sites": [{"site_id": 1,"url": "www.exemplo.com","hoteis": [ ]}]}</td>
   </tr>
 </table>
+
+## Deletando sites
+
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> DELETE </td>
+    <td> /sites/{url} <b>/site/www.exemplo.com</b> </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 200 Ok </td>
+    <td>{"message": "Site deleted."}</td>
+  </tr>
+</table>
+
+**Se não encontrar o site:**
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 404 Not Found </td>
+    <td>{"message": "Site not found."}</td>
+  </tr>
+</table>
+
+## Endpoints relacionados aos hotéis
+## Criação de hotéis:
+<table>
+  <tr>
+    <td> Method </td>
+    <td> URL </td>
+  </tr>
+  <tr>
+    <td> POST </td>
+    <td> /hoteis/{hotel_id}</b> </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td colspan="2"> Header </td>
+  </tr>
+  <tr>
+    <td> Content-Type  </td>
+    <td> application/json  </td>
+  </tr>
+  <tr>
+    <td> Authorization  </td>
+    <td> Bearer {token_de_acesso}  </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td> Request Body </td>
+  </tr>
+  <tr>
+    <td> {"hotel_id": "exemplo","nome": "Exemplo Hotel","estrelas": 4.0,"diaria": 600.0,"cidade": "Araras","site_id": 2}</td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 201 Created </td>
+    <td>{"hotel_id": "exemplo","nome": "Exemplo Hotel","estrelas": 4.0,"diaria": 600.0,"cidade": "Araras","site_id": 2}</td>
+  </tr>
+</table>
+
+**Se o hotel existir:**
+
+<table>
+  <tr>
+    <td> Status </td>
+    <td> Response Body </td>
+  </tr>
+  <tr>
+    <td> 400 Bad Requests </td>
+    <td>{"message": "Hotel id 'exemplo2' already exists."}</td>
+  </tr>
+</table>
+
+## Criação de hotéis:
+
 
